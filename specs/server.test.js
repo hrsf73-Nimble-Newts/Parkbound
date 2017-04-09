@@ -1,18 +1,16 @@
 const request = require('supertest');
-const express = require('express');
 
 describe('server tests', () => {
   let db;
   let tables;
   let server;
-  var app = express()
 
   let clearTables = (connection, tables, done) => {
 
   }
 
   beforeEach((done) => {
-    server = require('../server/index.js');
+    server = require('../src/server/index.js');
     let tables = [];
 
     //create connection here
