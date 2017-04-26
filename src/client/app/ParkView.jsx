@@ -25,7 +25,7 @@ class ParkView extends React.Component {
       this.props.getLodging(result[1][0].latitude, result[1][0].longitude)
       return result
     }).then((result) => {
-      this.props.getTenDayForecast(result[1][0].latitude, result[1][0].longitude)
+      this.props.getTenDayForecast(this.props.park[1][0].id)
       return result
     }).then((result) => {
       this.props.getTrails(result[1][0].id)
@@ -76,7 +76,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getPark: (code) => dispatch(getPark(code)),
     getCampgrounds: (id) => dispatch(getCampgrounds(id)),
-    getTenDayForecast: (latitude, longitude) => dispatch(getTenDayForecast(latitude, longitude)),
+    getTenDayForecast: (id) => dispatch(getTenDayForecast(id)),
     getLodging: (latitude, longitude) => dispatch(getLodging(latitude, longitude)),
     getTrails: (id) => dispatch(getTrails(id))
   }

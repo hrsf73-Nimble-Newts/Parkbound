@@ -14,6 +14,7 @@ const tenDayForecast = require('./handlers/weatherHandlers/tenDayForecastHandler
 const googleHelpers = require('./handlers/gHelpers.js')
 const campgroundsData = require('../db/models/getCampgroundsInfo.js');
 const trails = require('../db/models/getTrailsInfo.js');
+const forecast = require('../db/models/getForecast.js');
 const sendEmail = require('./handlers/emailHandler.js');
 const getHistoricalData = require('./handlers/weatherHandlers/historicalWeatherData.js')
 
@@ -76,7 +77,12 @@ app.post("/charge", (req, res) => {
   })
 });
 
-app.post('/api/park/tenDayForecast', tenDayForecast.getForecast);
+app.post('/api/park/tenDayForecast', (req, res) => {
+	forecast(req.query.id).then((forecast) => {
+		res.status(200).send(forecast);
+		console.log("this is the forecast", forecast)
+	})
+})
 
 app.get('/api/trails', (req, res) => {
 	trails(req.query.parkId).then((trails) => {
