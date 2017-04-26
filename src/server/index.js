@@ -78,6 +78,7 @@ app.post("/charge", (req, res) => {
 });
 
 app.post('/api/park/tenDayForecast', (req, res) => {
+	console.log('in tendayforecast, sending to model with params', req.query)
 	forecast(req.query.id).then((forecast) => {
 		res.status(200).send(forecast);
 		console.log("this is the forecast", forecast)
