@@ -12,17 +12,17 @@ const TenDayForecastList = (props) => {
       <tbody>
       <tr>
     {props.tenDayForecast.map((dayForecast, index) => {
-        return (<td><img src={dayForecast.icon_url}/></td>)
+        return (<td key={index}><img src={dayForecast.icon_url}/></td>)
       })}
     </tr>
       <tr>
     {props.tenDayForecast.map((dayForecast, index) => {
-        return (<td>{dayForecast.date.weekday}</td>)
+        return (<td key={index}>{dayForecast.date.weekday}</td>)
       })}
     </tr>
       <tr>
     {props.tenDayForecast.map((dayForecast, index) => {
-        return (<td>{`${dayForecast.high.fahrenheit}°F/${dayForecast.low.fahrenheit}°F`}</td>)
+        return (<td key={index}>{`${dayForecast.high.fahrenheit}°F/${dayForecast.low.fahrenheit}°F`}</td>)
       })}
     </tr>
     </tbody>

@@ -19,8 +19,8 @@ class NavBar extends Component {
           <Menu.Item name='logo'>Park Bound</Menu.Item>
           <Menu.Item  as={Link} to='/' name='home'>Home</Menu.Item>
           <Menu.Item disabled={this.props.distance > 0} href="/auth/fitbit" > 
-            <Label color={(this.props.distance > 0) ?  'green' : 'red'} > 
-              {(this.props.distance > 0) ?  'Fitbit Connected' : 'Fitbit Not Connected'}
+            <Label color={(this.props.distance !== '') ?  'green' : 'red'} > 
+              {(this.props.distance !== '') ?  'Fitbit Connected' : 'Fitbit Not Connected'}
             </Label>
           </Menu.Item>
           <Menu.Menu position='right'>

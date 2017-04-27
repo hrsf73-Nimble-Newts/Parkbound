@@ -10,11 +10,14 @@ import ActivitiesList from './activitiesList.jsx';
 import SinglePageNavBar from './singlePageNavBar.jsx';
 import {getTenDayForecast} from '../actions/getTenDayForecast.js';
 import {getLodging} from '../actions/getLodging.js';
+import {getDistance} from '../actions/getDistance.js';
 import {getTrails} from '../actions/getTrails.js';
 import {Link} from 'react-router-dom'
 import {Message, Container, Divider, Grid} from 'semantic-ui-react'
 import HistoricalWeatherDropdown from './historicalWeatherDataDropDown.jsx'
 import NavBar from './NavBar.jsx';
+import UnconnectedTrailList from './UnconnectedTrailList.jsx';
+import ConnectedTrailList from './ConnectedTrailList.jsx';
 
 
 class ParkView extends React.Component {
@@ -31,6 +34,9 @@ class ParkView extends React.Component {
       return result
     }).then((result) => {
       this.props.getTrails(result[1][0].id)
+      return result;
+    }).then((result) => {
+      this.props.getDistance();
     })
   }
   render() {
@@ -58,7 +64,8 @@ class ParkView extends React.Component {
         { this.props.tenDayForecast && <WeatherForecast tenDayForecast={this.props.tenDayForecast} />}
         </Container>
         <Container>
-        {`put trails here in this spot`}
+        {this.props.trails !== undefined && this.props.trails.length !== 0  && this.props.distance === '' && <UnconnectedTrailList trails={this.props.trails} />}
+        {this.props.trails !== undefined && this.props.trails.length !== 0  && this.props.distance !== '' && <ConnectedTrailList distance={this.props.distance} trails={this.props.trails} />}
         </Container>
         <Container>
         Put places here
@@ -78,7 +85,8 @@ const mapStateToProps = (state) => {
       campgrounds: state.getCampgrounds.campgrounds,
       tenDayForecast: state.getTenDayForecast.tenDayForecast,
       lodgings: state.getLodging.lodging,
-      trails: state.getTrails.trails
+      trails: state.getTrails.trails,
+      distance: state.getDistance.distance
     }
   }
 
@@ -88,7 +96,8 @@ const mapDispatchToProps = (dispatch) => {
     getCampgrounds: (id) => dispatch(getCampgrounds(id)),
     getTenDayForecast: (latitude, longitude) => dispatch(getTenDayForecast(latitude, longitude)),
     getLodging: (latitude, longitude) => dispatch(getLodging(latitude, longitude)),
-    getTrails: (id) => dispatch(getTrails(id))
+    getTrails: (id) => dispatch(getTrails(id)),
+    getDistance: () => dispatch(getDistance())
   }
 }
 

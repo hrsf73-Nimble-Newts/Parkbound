@@ -39,7 +39,6 @@ export const getParks = (filters) => {
         }
       })
       .then((res) => {
-        console.log(res, 'getParks getParks getParks getParks v v v')
         dispatch(parksRequestSuccess(filters, res.data))
       })
       .catch(err => dispatch(parksRequestFailure(filters)))
