@@ -15,7 +15,8 @@ const options = {
 const pgp = require('pg-promise')(options);
 pgp.pg.defaults.ssl = true;
 
-let db = pgp('postgres://vapabobdrxlaco:c73e2ac093866955891b405a00186a4e45deb6fa00cfa23f7d2a6a6e28020297@ec2-54-225-182-108.compute-1.amazonaws.com:5432/d603o0tkht6u79');
+// let db = pgp('postgres://vapabobdrxlaco:c73e2ac093866955891b405a00186a4e45deb6fa00cfa23f7d2a6a6e28020297@ec2-54-225-182-108.compute-1.amazonaws.com:5432/d603o0tkht6u79');
+let db = pgp('postgres://ucsqlgzoqmnngf:d577e8aa7d1502cd033c58cc0f91334c3f2369d8e0a34ed732a632206e7a7d29@ec2-174-129-223-193.compute-1.amazonaws.com:5432/d20eiqdm93dnfm');
 // let db = pgp({database: 'thesis'})
 
 
